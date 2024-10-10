@@ -1,0 +1,84 @@
+﻿@model BranchesWithPaginition.Models.Branch
+
+@{
+    ViewData["Title"] = "Branch / Store / Cashier";
+}
+<link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center" style="background-color:#3175b6;color:white;">
+            <div class="row align-items-center" style="white-space: nowrap;">
+                <div class="col-7 col-sm-9 col-md-10">
+                    @ViewData["Title"]
+                </div>
+                <div class="col-5 col-sm-3 col-md-2" style="font-size:xx-large;">
+                    <a style="color:white" asp-controller="Branches" asp-action="Create"><i class="fa-solid fa-circle-plus"></i></a>
+                    <button type="submit" form="editForm" style="color:white;background:none;border:none;">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form id="editForm" asp-controller="Branches" asp-action="Edit" method="post">
+                <div class="row mb-3">
+                    <div class="col-lg-7 col-sm-8 mb-4">
+                        <label>Branch</label>
+                        <input type="text" class="form-control" asp-for="@Model.Id" readonly />
+                    </div>
+                    <div class="col-lg-5 col-sm-4 mb-4">
+                        <label>Custom No</label>
+                        <input type="number" class="form-control" asp-for="@Model.CustomNo" />
+                    </div>
+                    <div class="col-lg-7 col-sm-12 mb-4">
+                        <label>Arabic Name</label>
+                        <input type="text" class="form-control" style="text-align:right" asp-for="@Model.ArabicName" />
+                    </div>
+                    <div class="col-lg-5 col-sm-12 mb-4">
+                        <label>Arabic Description</label>
+                        <input type="text" class="form-control" style="text-align:right" asp-for="@Model.ArabicDescription" />
+                    </div>
+
+                    <div class="col-lg-7 col-sm-12 mb-4">
+                        <label>English Name</label>
+                        <input type="text" class="form-control" asp-for="@Model.EnglishName" />
+                    </div>
+                    <div class="col-lg-5 col-sm-12 mb-4">
+                        <label>English Description</label>
+                        <input type="text" class="form-control" asp-for="@Model.EnglishDescription" />
+                    </div>
+
+                    <div class="col-lg-7 col-sm-12 mb-4">
+                        <label>Note</label>
+                        <textarea class="form-control" asp-for="Note"></textarea>
+                    </div>
+                    <div class="col-lg-5 col-sm-12 mb-4">
+                        <label>Address</label>
+                        <textarea class="form-control" asp-for="Address"></textarea>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+        <div class="card-footer">
+            <nav>
+                <div>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" asp-action="Details" asp-route-id="@ViewBag.Paginition.FirstPageNo"><<</a></li>
+                        <li class="page-item"><a class="page-link" asp-action="Details" asp-route-id="@(ViewBag.Paginition.CurrentPageNo - 1)">‹</a></li>
+                        <li class="page-item"><a class="page-link" href="#">@Model.Id</a></li>
+                        <li class="page-item"><a class="page-link" asp-action="Details" asp-route-id="@(ViewBag.Paginition.CurrentPageNo + 1)">›</a></li>
+                        <li class="page-item"><a class="page-link" asp-action="Details" asp-route-id="@ViewBag.Paginition.LastPageNo">>></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+
+    </div>
+</div>
